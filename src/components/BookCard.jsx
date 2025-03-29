@@ -1,17 +1,21 @@
-import React from "react";
+import React from 'react';
+
 
 const BookCard = ({ book }) => {
+  const { volumeInfo } = book;
+
   return (
     <div className="book-card">
       <img
         src={
-          book.imageLinks ? book.imageLinks.thumbnail : "https://via.placeholder.com/128x195?text=No+Image"
+          volumeInfo.imageLinks?.thumbnail ||
+          'https://via.placeholder.com/128x193?text=No+Image'
         }
-        alt={book.title}
+        alt={volumeInfo.title}
       />
-      <h3>{book.title}</h3>
-      <p><strong>Author:</strong> {book.authors ? book.authors.join(", ") : "Unknown"}</p>
-      <p>{book.description ? book.description.slice(0, 100) + "..." : "No description available"}</p>
+      <h3>{volumeInfo.title}</h3>
+      <p><strong>Author:</strong> {volumeInfo.authors?.join(', ') || 'N/A'}</p>
+      <p>{volumeInfo.description?.slice(0, 150)}...</p>
     </div>
   );
 };

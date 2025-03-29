@@ -1,16 +1,33 @@
-import React from "react";
+import React from 'react';
 
-const CategoryDropdown = ({ setCategory }) => {
-  const categories = ["fiction", "science", "romance", "history", "biography"];
+const CategoryDropdown = ({ selectedCategory, setSelectedCategory }) => {
+  const categories = [
+    'Fiction',
+    'Science',
+    'Romance',
+    'History',
+    'Biography',
+    'Fantasy',
+    'Technology',
+    'Travel',
+    'Comics',
+  ];
 
   return (
-    <select onChange={(e) => setCategory(e.target.value)}>
-      {categories.map((cat) => (
-        <option key={cat} value={cat}>
-          {cat.charAt(0).toUpperCase() + cat.slice(1)}
-        </option>
-      ))}
-    </select>
+    <div className="dropdown">
+      <label>Select Category: </label>
+      <select
+        value={selectedCategory}
+        onChange={(e) => setSelectedCategory(e.target.value)}
+      >
+        <option value="">-- Choose a category --</option>
+        {categories.map((category, idx) => (
+          <option value={category} key={idx}>
+            {category}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 };
 
